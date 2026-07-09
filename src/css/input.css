@@ -1,1 +1,40 @@
 @import "tailwindcss";
+
+@layer components {
+
+    /* Navigation */
+
+    .nav-link {
+        @apply pb-2 font-semibold text-gray-800 transition-all duration-300 hover:text-orange-500;
+    }
+
+    .active {
+        @apply border-b-4 border-orange-500 text-orange-500;
+    }
+
+    /* Buttons */
+
+    .btn-primary {
+        @apply rounded-full bg-orange-500 px-7 py-3 font-semibold text-white shadow-md transition-all duration-300 hover:bg-black;
+    }
+
+}
+
+@theme {
+
+    --animate-float: float 4s ease-in-out infinite;
+
+    @keyframes float {
+
+        0%,100%{
+            transform:translateY(0px);
+        }
+
+        50%{
+            transform:translateY(-12px);
+        }
+
+    }
+
+}
+

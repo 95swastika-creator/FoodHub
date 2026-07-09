@@ -1,0 +1,85 @@
+@reference "tailwindcss";
+
+.btn-primary{
+    @apply inline-flex items-center justify-center
+    rounded-full
+    bg-orange-500
+    px-8 py-4
+    font-semibold
+    text-white
+    transition
+    duration-300
+    hover:bg-orange-600
+    hover:shadow-lg;
+}
+
+.btn-secondary{
+    @apply inline-flex items-center justify-center
+    rounded-full
+    border-2
+    border-orange-500
+    px-8 py-4
+    font-semibold
+    text-orange-500
+    transition
+    duration-300
+    hover:bg-orange-500
+    hover:text-white;
+}
+
+.section{
+    @apply py-24;
+}
+
+.container-custom{
+    @apply max-w-7xl mx-auto px-6 lg:px-12;
+}
+
+.section-tag{
+    @apply uppercase
+    tracking-widest
+    text-orange-500
+    font-semibold;
+}
+
+.section-title{
+    @apply mt-3
+    text-5xl
+    font-bold
+    text-gray-900;
+}
+
+.section-description{
+    @apply mt-6
+    text-lg
+    leading-8
+    text-gray-500;
+}
+
+.card{
+    @apply rounded-3xl
+    bg-white
+    border
+    border-orange-100
+    shadow-md
+    transition
+    duration-300
+    hover:-translate-y-2
+    hover:shadow-xl;
+}
+
+.favorite-btn{
+
+transition:.3s;
+
+z-index:5;
+
+}
+
+.favorite-btn:hover{
+
+transform:scale(1.15);
+
+box-shadow:0 10px 20px rgba(0,0,0,.15);
+
+}

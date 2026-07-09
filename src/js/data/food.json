@@ -1,0 +1,74 @@
+[
+  {
+    "id": 1,
+    "name": "Chicken Biryani",
+    "category": "Biryani",
+    "price": 399,
+    "rating": 4.9,
+    "image": "chicken-biryani.png",
+    "description": "Authentic Hyderabadi dum biryani served with fresh raita."
+  },
+  {
+    "id": 2,
+    "name": "Veg Biryani",
+    "category": "Biryani",
+    "price": 299,
+    "rating": 4.7,
+    "image": "veg-biryani.png",
+    "description": "Delicious vegetable dum biryani."
+  },
+  {
+    "id": 3,
+    "name": "Chicken Burger",
+    "category": "Burger",
+    "price": 249,
+    "rating": 4.8,
+    "image": "chicken-burger.png",
+    "description": "Juicy grilled chicken burger."
+  },
+  {
+  "id": 4,
+  "name": "Paneer Burger",
+  "category": "Burger",
+  "price": 299,
+  "rating": 4.8,
+  "description": "Loaded with fresh paneer.",
+  "image": "paneer-burger.png"
+},
+  {
+    "id": 5,
+    "name": "Farmhouse Pizza",
+    "category": "Pizza",
+    "price": 499,
+    "rating": 4.8,
+    "image": "farmhouse.png",
+    "description": "Loaded farmhouse pizza."
+  },
+  {
+    "id": 6,
+    "name": "Margherita Pizza",
+    "category": "Pizza",
+    "price": 349,
+    "rating": 4.7,
+    "image": "margherita.png",
+    "description": "Classic cheese pizza."
+  },
+  {
+    "id": 7,
+    "name": "White Sauce Pasta",
+    "category": "Pasta",
+    "price": 289,
+    "rating": 4.5,
+    "image": "white-sause-pasta.png",
+    "description": "Creamy white sauce pasta."
+  },
+  {
+    "id": 8,
+    "name": "Tomato Pasta",
+    "category": "Pasta",
+    "price": 269,
+    "rating": 4.6,
+    "image": "tomato-pasta.png",
+    "description": "Italian tomato pasta."
+  }
+]
