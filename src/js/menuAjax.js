@@ -3,6 +3,12 @@ import "../css/components.css";
 import "../css/menu.css";
 import "./components/footer";
 import { toggleFavorite } from "./favorites";
+import {
+    addToCart,
+    increaseQuantity,
+    decreaseQuantity,
+    getCartQuantity
+} from "./cart";
 
 import { createCard } from "./components/foodCard";
 
