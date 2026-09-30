@@ -59,8 +59,8 @@ d="M21.435 6.582a5.373 5.373 0 00-7.6 0L12 8.417l-1.835-1.835a5.373 5.373 0 00-7
             </span>
 
             <img
-                src="${images[food.image]}"
-                alt="${food.name}"
+                    src="${food.image}"
+                    alt="${food.name}"
                 class="w-60 h-60 object-contain group-hover:scale-110 transition duration-500">
 
         </div>

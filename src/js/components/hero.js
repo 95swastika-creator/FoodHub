@@ -98,7 +98,7 @@ hero.innerHTML = `
                 <!-- Main Food Image -->
 
                 <img
-                    src="hero-section.png"
+                    src="${require("../../assets/images/hero-section.png")}"
                     alt="Food"
                     class="w-full">
 

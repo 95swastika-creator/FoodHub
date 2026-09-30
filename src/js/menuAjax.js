@@ -1,7 +1,13 @@
+
 import "../css/input.css";
 import "../css/components.css";
 import "../css/menu.css";
+
 import "./components/footer";
+
+import foodData from "./data/food.json";
+import images from "./utils/images";
+
 import { toggleFavorite } from "./favorites";
 import {
     addToCart,
@@ -9,211 +15,219 @@ import {
     decreaseQuantity,
     getCartQuantity
 } from "./cart";
-
 import { createCard } from "./components/foodCard";
+
+import {
+    addToCart,
+    increaseQuantity,
+    decreaseQuantity
+} from "./cart";
 
 import menuBanner from "../assets/images/menu-banner.png";
 
-import pizzaImg from "../assets/images/dishes/farmhouse.png";
-import burgerImg from "../assets/images/dishes/veg-burger.png";
-import biryaniImg from "../assets/images/dishes/chicken-biryani.png";
-import pastaImg from "../assets/images/dishes/white-sause-pasta.png";
+// Default category
 let currentCategory = "Pizza";
+
+// Load food data from JSON
+let allFoods = foodData;
+
+// Get menu container
 const menuPage = document.querySelector("#menu-page");
-menuPage.innerHTML = `
 
-<!-- Banner -->
+// Check whether menu page exists
+if (menuPage) {
 
-<section class="relative mt-20">
+    // Render Menu HTML
+    menuPage.innerHTML = `
 
-    <img
-        src="${menuBanner}"
-        class="w-full h-[350px] object-cover">
+        <!-- Banner -->
 
-    <!-- Overlay -->
+        <section class="relative mt-20">
 
-    <div class="absolute inset-0 bg-black/50"></div>
+            <img
+                src="${menuBanner}"
+                alt="FoodHub Menu Banner"
+                class="w-full h-[350px] object-cover">
 
-    <!-- Banner Text -->
+            <!-- Overlay -->
 
-    <div class="absolute inset-0 flex flex-col justify-center items-center text-center px-6">
+            <div class="absolute inset-0 bg-black/50"></div>
 
-        <p class="uppercase tracking-[5px] text-orange-400 font-semibold">
+            <!-- Banner Text -->
 
-            OUR MENU
+            <div class="absolute inset-0 flex flex-col justify-center items-center text-center px-6">
 
-        </p>
+                <p class="uppercase tracking-[5px] text-orange-400 font-semibold">
+                    OUR MENU
+                </p>
 
-        <h1 class="text-5xl md:text-6xl font-bold text-white mt-4">
+                <h1 class="text-5xl md:text-6xl font-bold text-white mt-4">
+                    Discover Our Delicious Menu
+                </h1>
 
-            Discover Our Delicious Menu
+                <p class="text-gray-200 mt-5 max-w-2xl text-lg">
+                    Freshly prepared meals crafted with premium ingredients and served fresh every day.
+                </p>
 
-        </h1>
+            </div>
 
-        <p class="text-gray-200 mt-5 max-w-2xl text-lg">
+        </section>
 
-            Freshly prepared meals crafted with premium ingredients and served fresh every day.
+        <!-- Menu Section -->
 
-        </p>
+        <section class="py-24 bg-orange-50">
 
-    </div>
+            <div class="max-w-7xl mx-auto px-6 lg:px-12">
 
-</section>
-<section class="py-24 bg-orange-50">
+                <div class="grid lg:grid-cols-4 gap-10">
 
-<div class="max-w-7xl mx-auto px-6 lg:px-12">
-        <!-- Menu Layout -->
+                    <!-- Left Sidebar -->
 
-        <div class="grid lg:grid-cols-4 gap-10">
+                    <aside class="lg:col-span-1">
 
-            <!-- Left Sidebar -->
+                        <div class="bg-white rounded-3xl shadow-lg p-5 sticky top-28">
 
-            <aside class="lg:col-span-1">
+                            <!-- Pizza -->
 
-                <div class="bg-white rounded-3xl shadow-lg p-5 sticky top-28">
+                            <button
+                                id="pizza-btn"
+                                class="menu-category active-category">
 
-                    <button
-id="pizza-btn"
-class="menu-category active-category">
+                                <img
+                                    src="${images["farmhouse.png"]}"
+                                    alt="Pizza"
+                                    class="category-image">
 
-    <img
-        src="${pizzaImg}"
-        class="category-image">
+                                <div class="flex-1">
+                                    <h3 class="category-title text-lg font-semibold">
+                                        Pizza
+                                    </h3>
+                                </div>
 
-    <div class="flex-1">
+                            </button>
 
-        <h3 class="category-title text-lg font-semibold">
+                            <!-- Burger -->
 
-            Pizza
+                            <button
+                                id="burger-btn"
+                                class="menu-category">
 
-        </h3>
+                                <img
+                                    src="${images["veg-burger.png"]}"
+                                    alt="Burger"
+                                    class="w-20 h-20 object-contain">
 
-       
-       
-    </div>
+                                <div>
+                                    <h3 class="text-lg font-semibold">
+                                        Burger
+                                    </h3>
+                                </div>
 
-</button>
+                            </button>
 
-                    <button
-                        class="menu-category"
-                        id="burger-btn">
+                            <!-- Biryani -->
 
-                        <img
-                            src="${burgerImg}"
-                            class="w-20 h-20 object-contain">
+                            <button
+                                id="biryani-btn"
+                                class="menu-category">
 
-                        <div>
+                                <img
+                                    src="${images["chicken-biryani.png"]}"
+                                    alt="Biryani"
+                                    class="w-20 h-20 object-contain">
 
-                            <h3 class="text-lg font-semibold">
+                                <div>
+                                    <h3 class="text-lg font-semibold">
+                                        Biryani
+                                    </h3>
+                                </div>
 
-                                Burger
+                            </button>
 
-                            </h3>
+                            <!-- Pasta -->
 
-                           
+                            <button
+                                id="pasta-btn"
+                                class="menu-category">
 
-                        </div>
+                                <img
+                                    src="${images["white-sause-pasta.png"]}"
+                                    alt="Pasta"
+                                    class="w-20 h-20 object-contain">
 
-                    </button>
+                                <div>
+                                    <h3 class="text-lg font-semibold">
+                                        Pasta
+                                    </h3>
+                                </div>
 
-                    <button
-                        class="menu-category"
-                        id="biryani-btn">
-
-                        <img
-                            src="${biryaniImg}"
-                            class="w-20 h-20 object-contain">
-
-                        <div>
-
-                            <h3 class="text-lg font-semibold">
-
-                                Biryani
-
-                            </h3>
-
-                            
-
-                        </div>
-
-                    </button>
-
-                    <button
-                        class="menu-category"
-                        id="pasta-btn">
-
-                        <img
-                            src="${pastaImg}"
-                            class="w-20 h-20 object-contain">
-
-                        <div>
-
-                            <h3 class="text-lg font-semibold">
-
-                                Pasta
-
-                            </h3>
-
-                           
+                            </button>
 
                         </div>
 
-                    </button>
+                    </aside>
+
+                    <!-- Right Menu Content -->
+
+                    <section class="lg:col-span-3">
+
+                        <div id="menu-title"></div>
+
+                        <div
+                            id="menu-container"
+                            class="grid md:grid-cols-2 xl:grid-cols-3 gap-8">
+
+                        </div>
+
+                    </section>
 
                 </div>
 
-            </aside>
+            </div>
 
-            <!-- Right -->
+        </section>
 
-            <section class="lg:col-span-3">
+    `;
 
-                <div id="menu-title"></div>
+    // Display default category
+    showCategory("Pizza");
 
-                <div
-                    id="menu-container"
-                    class="grid md:grid-cols-2 xl:grid-cols-3 gap-8">
-
-                </div>
-
-            </section>
-
-        </div>
-
-    </div>
-
-</section>
-
-`;
-
-// load the menu items 
-let allFoods = [];
-fetch("./data/food.json")
-    .then(response => response.json())
-    .then(data => {
-
-        allFoods = data;
-
+    // Category button events
+    document.getElementById("pizza-btn").onclick = () => {
         showCategory("Pizza");
+    };
 
-    })
-    .catch(error => {
+    document.getElementById("burger-btn").onclick = () => {
+        showCategory("Burger");
+    };
 
-        console.log(error);
+    document.getElementById("biryani-btn").onclick = () => {
+        showCategory("Biryani");
+    };
 
-    });
+    document.getElementById("pasta-btn").onclick = () => {
+        showCategory("Pasta");
+    };
 
- function showCategory(category) {
-         currentCategory = category;
+}
 
-    // Remove active class from all menu items
+
+// ========================================
+// SHOW CATEGORY
+// ========================================
+
+function showCategory(category) {
+
+    currentCategory = category;
+
+    // Remove active class
     document.querySelectorAll(".menu-category").forEach(item => {
 
         item.classList.remove("active-category");
 
     });
 
-    // Add active class to selected category
+    // Add active class
     document
         .getElementById(category.toLowerCase() + "-btn")
         .classList.add("active-category");
@@ -225,7 +239,7 @@ fetch("./data/food.json")
 
     });
 
-    // Update Title
+    // Update title
     document.getElementById("menu-title").innerHTML = `
 
         <p class="uppercase tracking-[3px] text-orange-500 font-semibold">
@@ -254,6 +268,11 @@ fetch("./data/food.json")
 
 }
 
+
+// ========================================
+// RENDER FOOD CARDS
+// ========================================
+
 function renderFoods(foods) {
 
     const menuContainer = document.getElementById("menu-container");
@@ -262,42 +281,73 @@ function renderFoods(foods) {
 
     foods.forEach(food => {
 
-        menuContainer.innerHTML += createCard(food);
+        // Get actual image URL from images.js
+        const imageUrl = images[food.image];
 
-    });
-    addMenuCartEvents();
+        // Check image mapping
+        if (!imageUrl) {
 
-}
-function addMenuCartEvents() {
-
-   document.querySelectorAll(".add-cart-btn").forEach(button => {
-
-    button.addEventListener("click", () => {
-
-        const id = Number(button.dataset.id);
-
-        const food = allFoods.find(item => item.id === id);
-
-        const isLoggedIn = localStorage.getItem("isLoggedIn");
-
-        if (isLoggedIn !== "true") {
-
-            alert("Please login first.");
-
-            window.location.href = "login.html";
-
-            return;
+            console.error("Image not found:", food.image);
 
         }
 
-        addToCart(food);
+        // Pass actual image URL to createCard
+        const foodWithImage = {
 
-        refreshCurrentCategory();
+            ...food,
+
+            image: imageUrl
+
+        };
+
+        menuContainer.innerHTML += createCard(foodWithImage);
 
     });
 
-});
+    addMenuCartEvents();
 
+}
+
+
+// ========================================
+// CART AND FAVOURITE EVENTS
+// ========================================
+
+function addMenuCartEvents() {
+
+    // Add to cart
+    document.querySelectorAll(".add-cart-btn").forEach(button => {
+
+        button.addEventListener("click", () => {
+
+            const id = Number(button.dataset.id);
+
+            const food = allFoods.find(item => item.id === id);
+
+            if (!food) return;
+
+            const isLoggedIn = localStorage.getItem("isLoggedIn");
+
+            if (isLoggedIn !== "true") {
+
+                alert("Please login first.");
+
+                window.location.href = "login.html";
+
+                return;
+
+            }
+
+            addToCart(food);
+
+            refreshCurrentCategory();
+
+        });
+
+    });
+
+
+    // Increase quantity
     document.querySelectorAll(".plus-btn").forEach(button => {
 
         button.addEventListener("click", () => {
@@ -310,6 +360,8 @@ function addMenuCartEvents() {
 
     });
 
+
+    // Decrease quantity
     document.querySelectorAll(".minus-btn").forEach(button => {
 
         button.addEventListener("click", () => {
@@ -322,29 +374,29 @@ function addMenuCartEvents() {
 
     });
 
+
+    // Toggle favourite
     document.querySelectorAll(".favorite-btn").forEach(button => {
 
-    button.addEventListener("click", () => {
+        button.addEventListener("click", () => {
 
-        toggleFavorite(Number(button.dataset.id));
+            toggleFavorite(Number(button.dataset.id));
 
-        refreshCurrentCategory();
+            refreshCurrentCategory();
+
+        });
 
     });
 
-});
-
 }
+
+
+// ========================================
+// REFRESH CURRENT CATEGORY
+// ========================================
+
 function refreshCurrentCategory() {
 
     showCategory(currentCategory);
 
 }
-
-document.getElementById("pizza-btn").onclick = () => showCategory("Pizza");
-
-document.getElementById("burger-btn").onclick = () => showCategory("Burger");
-
-document.getElementById("biryani-btn").onclick = () => showCategory("Biryani");
-
-document.getElementById("pasta-btn").onclick = () => showCategory("Pasta");

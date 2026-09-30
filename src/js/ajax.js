@@ -1,4 +1,5 @@
 import images from "./utils/images";
+import foodData from "./data/food.json";
 import {addToCart,increaseQuantity,decreaseQuantity,getCartQuantity,updateCartCount} from "./cart";
 import { createCard } from "./components/foodCard";
 import { toggleFavorite } from "./favorites";
@@ -9,40 +10,15 @@ const dishesContainer = document.querySelector("#dishes-container");
 
 function loadFoods() {
 
-    fetch("./data/food.json")
+    allFoods = foodData;
 
-        .then((response) => {
+    currentFoods = allFoods;
 
-            if (!response.ok) {
-                throw new Error("Unable to load food data");
-            }
+    displayFoods(currentFoods, currentLimit);
 
-            return response.json();
-
-        })
-
-        .then((foods) => {
-
-              allFoods = foods;
-
-              currentFoods = allFoods;
-
-              displayFoods(currentFoods, currentLimit);
-
-             initializeFilters();
-
-
-        })
-
-        .catch((error) => {
-
-            console.log(error);
-
-        });
+    initializeFilters();
 
 }
-
-
 
 function displayFoods(foods, limit = 4) {
 
@@ -53,9 +29,14 @@ function displayFoods(foods, limit = 4) {
 
     foods.slice(0, limit).forEach((food) => {
 
-        dishesContainer.innerHTML += createCard(food);
+    const foodWithImage = {
+        ...food,
+        image: images[food.image]
+    };
 
-    });
+    dishesContainer.innerHTML += createCard(foodWithImage);
+
+});
 
     // Existing Cart Events
     addCartEvents();
@@ -161,11 +142,16 @@ export function displayMenuCards(foods) {
 
     menuContainer.innerHTML = "";
 
-    foods.forEach(food => {
+   foods.forEach(food => {
 
-        menuContainer.innerHTML += createCard(food);
+    const foodWithImage = {
+        ...food,
+        image: images[food.image]
+    };
 
-    });
+    menuContainer.innerHTML += createCard(foodWithImage);
+
+});
 
     addCartEvents();
 
@@ -176,11 +162,9 @@ function initializeFilters() {
 
     document.querySelector("#all-btn").addEventListener("click", () => {
 
-        displayFoods(currentFoods, currentLimit);
-        
+    displayFoods(allFoods, allFoods.length);
 
-    });
-
+});
     document.querySelector("#pizza-btn").addEventListener("click", () => {
 
         filterFoods("Pizza");

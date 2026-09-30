@@ -18,7 +18,7 @@ header.innerHTML = `
             <a href="index.html" class="flex items-center">
 
                 <img
-                    src="logo.png"
+                    src="${require("../../assets/images/logo.png")}"
                     alt="FoodHub Logo"
                     class="h-16 w-auto">
 

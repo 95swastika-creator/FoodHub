@@ -15,7 +15,7 @@ footer.innerHTML = `
             <div>
 
                 <img
-                    src="footer-logo.png"
+                    src=" ${require("../../assets/images/footer-logo.png")}"
                     alt="FoodHub Logo"
                     class="h-16 mb-5">
 
