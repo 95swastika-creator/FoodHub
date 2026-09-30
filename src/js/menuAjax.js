@@ -17,11 +17,6 @@ import {
 } from "./cart";
 import { createCard } from "./components/foodCard";
 
-import {
-    addToCart,
-    increaseQuantity,
-    decreaseQuantity
-} from "./cart";
 
 import menuBanner from "../assets/images/menu-banner.png";
 
